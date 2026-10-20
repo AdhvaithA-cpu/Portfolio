@@ -1,0 +1,665 @@
+% =========================================================
+% HOW CFD SHAPES SPACEFLIGHT
+% Revised magazine-style feature
+% Compile twice with pdfLaTeX
+% =========================================================
+
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,mathptmx,microtype}
+
+\usepackage[
+margin=15mm,
+top=16mm,
+bottom=15mm,
+headheight=12pt,
+headsep=5mm,
+footskip=8mm
+]{geometry}
+
+\usepackage{xcolor,tikz,graphicx,multicol,fancyhdr,ragged2e,needspace}
+\usetikzlibrary{arrows.meta}
+
+\usepackage[hyphens]{url}
+\usepackage[
+colorlinks=true,
+urlcolor=ink,
+linkcolor=ink,
+citecolor=accent
+]{hyperref}
+
+% =========================================================
+% COLOURS
+% =========================================================
+
+\definecolor{ink}{HTML}{222830}
+\definecolor{accent}{HTML}{BC2637}
+\definecolor{muted}{HTML}{56616D}
+\definecolor{paper}{HTML}{F1F3F5}
+\definecolor{line}{HTML}{CBD1D7}
+
+% =========================================================
+% PAGE
+% =========================================================
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlength{\columnsep}{8mm}
+\setlength{\multicolsep}{5pt}
+
+\emergencystretch=1.5em
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{
+\sffamily\fontsize{7.5}{9}\selectfont
+\color{muted}
+SPACE SYSTEMS / CFD
+}
+
+\fancyhead[R]{
+\sffamily\fontsize{7.5}{9}\selectfont
+\color{muted}
+FEATURE
+}
+
+\fancyfoot[L]{
+\sffamily\fontsize{7.5}{9}\selectfont
+Adhvaith Ananth
+}
+
+\fancyfoot[R]{
+\sffamily\fontsize{7.5}{9}\selectfont
+\thepage
+}
+
+\renewcommand{\headrulewidth}{.3pt}
+
+\hypersetup{
+pdftitle={How CFD Shapes Spaceflight},
+pdfauthor={Adhvaith Ananth}
+}
+
+% =========================================================
+% ARTICLE TEXT
+% =========================================================
+
+\newcommand{\StandfirstText}{
+Rocket engines, propellant tanks, crew cabins and planetary
+landers look like separate engineering problems. They share
+something important: fluids are moving through or around all
+of them, and CFD helps engineers work out what those fluids
+are doing.
+}
+
+\newcommand{\OpeningText}{
+Space may be a vacuum, but spaceflight is full of fluid
+problems. Propellant has to move through engines and storage
+tanks. Air has to circulate around astronauts. A vehicle
+entering an atmosphere pushes through hot, compressed gas.
+During a lunar landing, rocket exhaust hits loose regolith
+only metres below the engines.
+
+Many of these flows are difficult to see directly, and some
+cannot be reproduced at full scale on Earth. That is where
+computational fluid dynamics becomes useful. A simulation can
+show what is happening in places where sensors are limited,
+testing is expensive, or the real environment only exists
+during a mission.
+}
+
+\newcommand{\BasicsText}{
+A CFD model starts by breaking a flow region into a mesh of
+small cells. The computer then works through equations for
+mass, momentum and energy across those cells. Depending on the
+problem, engineers add models for turbulence, combustion,
+heat transfer, chemical reactions or particles.
+
+The useful part is what comes out of the calculation.
+Pressure on a vehicle, temperature inside an engine, gas
+velocity through a cabin and heating on a heat shield can all
+be examined before a full system is flown.
+
+The picture on the screen is only one part of the result.
+Engineers are usually more interested in the numbers behind
+it: forces, temperatures, pressure changes, heating rates and
+other values that can be compared with design limits or test
+data.
+}
+
+\newcommand{\EngineText}{
+Few places show the difficulty of fluid simulation better than
+the inside of a rocket engine. Fuel and oxidizer enter through
+injectors, mix over very short distances and react while the
+gas is moving at high speed. Temperatures change sharply
+through the chamber, and the final flow has to leave through
+the nozzle efficiently.
+
+NASA researchers have used the Loci-STREAM CFD code to study
+methane--oxygen engine concepts on the Aitken supercomputer.
+One reason for doing this is that an engine can contain
+hundreds of injector elements. Testing every change in
+hardware would be slow and expensive.
+
+The simulations allow researchers to look inside the chamber
+and see how the reacting flow develops. NASA's work also uses
+a flamelet-based combustion model that cuts the computational
+cost compared with treating every chemical reaction in full
+detail.
+
+None of this removes the need to fire an engine. It does mean
+that engineers can screen ideas, investigate unexpected flow
+patterns and arrive at a test with a much better idea of what
+they expect to see.
+}
+
+\newcommand{\LaunchText}{
+Once the rocket leaves the pad, the flow problem changes
+quickly. The vehicle moves from relatively slow flight through
+the transonic region and then into supersonic conditions.
+Engine plumes are present at the same time, and parts of the
+vehicle may separate while aerodynamic loads are still large.
+
+NASA faced this problem while building the aerodynamic
+database for Space Launch System booster separation. The two
+solid rocket boosters do not simply fall away from the core.
+Their position changes while separation-motor plumes and the
+core-stage exhaust alter the surrounding flow.
+
+Researchers used NASA's FUN3D solver for the database and
+compared results with OVERFLOW calculations. The quantity of
+interest was not a dramatic flow image but the forces and
+moments acting on the different parts of the vehicle.
+
+That information feeds into the much larger problem of making
+sure a short separation event happens without the departing
+boosters returning toward the core.
+}
+
+\newcommand{\TankText}{
+A tank full of cryogenic propellant seems quieter than a rocket
+engine, but the fluid problem does not go away. Liquid hydrogen
+or oxygen slowly gains heat from its surroundings. Some of the
+liquid can then boil into vapour, raising the pressure inside
+the tank.
+
+On Earth, gravity keeps the liquid at the bottom and the vapour
+above it. In microgravity the arrangement is far less
+predictable. The position of the liquid, the way it mixes and
+the movement of heat through the tank all become important.
+
+NASA's Zero-Boil-Off Tank experiments study ways to control
+these effects using active cooling and mixing. The experiments
+also provide data that can be used to improve CFD models of
+cryogenic tanks.
+
+For a short mission, some boil-off may be manageable. For a
+longer journey or an orbital fuel depot, losing propellant
+continuously is a much bigger problem. Fluid behaviour inside
+the tank becomes part of the mission's overall fuel budget.
+}
+
+\newcommand{\CabinText}{
+CFD can also be useful in a place that looks much more
+ordinary: the cabin.
+
+On Earth, warm air rises and natural convection helps mix a
+room. A spacecraft cannot rely on that in microgravity.
+Ventilation fans have to move air deliberately, especially
+around the crew.
+
+That matters because an astronaut continually exhales carbon
+dioxide. If airflow stops, the concentration close to a
+person's face can be different from the average concentration
+measured across the whole cabin.
+
+A study for Gateway modelled this situation after partial or
+complete ventilation shutdown. Researchers simulated breathing
+near a crewmember's head and changed the mesh, turbulence model,
+crew position and number of occupants.
+
+It is a good example of why CFD is useful even when the flow
+does not look spectacular. The important result is not a plume
+or shock wave. It is whether the air immediately entering a
+crewmember's lungs stays within a safe range.
+}
+
+\newcommand{\EntryText}{
+Atmospheric entry is almost the opposite problem. Instead of
+weak air motion inside a cabin, a spacecraft meets an
+atmosphere at several kilometres per second.
+
+A shock forms ahead of the vehicle and the gas behind it
+becomes extremely hot. The resulting pressure and heating help
+determine the shape of the vehicle and the thickness and
+material of its thermal protection system.
+
+Mars Science Laboratory is a useful case because engineers had
+both preflight calculations and measurements from the real
+entry. Its heat shield carried instruments that recorded
+temperatures and pressures as the spacecraft descended through
+the Martian atmosphere.
+
+Researchers later compared those measurements with
+reconstructed and computational heating. The comparison showed some possibility
+that boundary-layer transition and surface roughness made some
+parts of the heating environment harder to predict than others.
+
+That is valuable information. A flight does not simply confirm
+a CFD model. It can show exactly where the model needs work
+before the next vehicle uses it.
+}
+
+\newcommand{\LandingText}{
+During a powered landing, the engines eventually point toward
+the surface they are approaching. Their exhaust has nowhere to
+go but down and outward.
+
+On the Moon, that gas can sweep across loose regolith, erode
+the surface and throw particles away from the landing point.
+Those particles can obscure cameras or strike nearby
+equipment. The very low surrounding pressure also means that
+parts of the exhaust flow do not behave exactly like the
+continuum flows normally modelled around aircraft.
+
+NASA has combined CFD, rarefied-flow methods and models of
+granular material to study these plume--surface interactions.
+The simulations have also been checked against experiments in
+low-pressure and near-vacuum chambers.
+
+The calculations are large. Some NASA cases used more than one
+hundred million cells and thousands of processors.
+
+The reason for spending that computing time is straightforward:
+a lander needs to know what kind of surface environment its own
+engines are about to create.
+}
+
+\newcommand{\ClosingText}{
+The weakest way to judge a CFD result is by how convincing the
+picture looks. A clean contour plot can still come from a poor
+calculation.
+
+Verification checks the numerical side of the problem. Does
+the solution converge? Does refining the mesh change the
+answer? Is the time step small enough?
+
+Validation asks something different. When the model is compared
+with an experiment or flight measurement, does it reproduce the
+real physics closely enough for the job at hand?
+
+The distinction matters because a model is never simply
+``validated'' for everything. A method that performs well for
+one flow regime may become unreliable when the geometry,
+temperature, Mach number or pressure changes.
+
+Useful CFD therefore comes with limits. Engineers need to know
+not only what a simulation predicts, but also how much evidence
+there is for trusting that prediction in the particular
+problem they are trying to solve.
+}
+
+\newcommand{\BioText}{
+Adhvaith Ananth is a student researcher interested in
+aerospace engineering, computational fluid dynamics and space
+systems, with experience working on CFD validation problems.
+}
+
+\newcommand{\CaptionOne}{
+Six very different parts of a space mission can become fluid
+dynamics problems, from reacting flow in an engine to exhaust
+moving lunar soil.
+}
+
+\newcommand{\CaptionTwo}{
+A CFD result becomes more useful when numerical checks are
+combined with measurements and the limits of the model are
+understood.
+}
+
+% =========================================================
+% DESIGN COMMANDS
+% =========================================================
+
+\newcommand{\topic}[2]{
+\par
+\begin{samepage}
+\Needspace{4\baselineskip}
+\vspace{4pt}
+{
+\sffamily
+\bfseries
+\fontsize{11}{13}\selectfont
+#1
+}
+\par
+\nopagebreak
+\vspace{1pt}
+#2
+\par
+\end{samepage}
+}
+
+\newcommand{\diagram}[3]{
+\par
+\Needspace{67mm}
+\vspace{4pt}
+\noindent
+\begin{minipage}{\linewidth}
+\centering
+\resizebox{\linewidth}{!}{#1}
+\par
+\vspace{3pt}
+{
+\RaggedRight
+\sffamily
+\fontsize{8}{10}\selectfont
+\textbf{#2}\quad #3
+\par
+}
+\end{minipage}
+\par
+\vspace{3pt}
+}
+
+% =========================================================
+% FIGURE 1
+% =========================================================
+
+\newcommand{\missionfigure}{
+\begin{tikzpicture}[
+font=\sffamily\fontsize{8}{10}\selectfont,
+tile/.style={
+draw=line,
+fill=paper,
+rounded corners=2pt,
+text width=3.62cm,
+minimum height=1.62cm,
+inner sep=6pt,
+align=left
+}
+]
+
+\node[tile] at (0,0) {
+\textbf{ENGINE COMBUSTION}\\[3pt]
+Mixing and reaction\\
+Temperature and pressure
+};
+
+\node[tile] at (4.3,0) {
+\textbf{LAUNCH}\\[3pt]
+External airflow\\
+Plumes and vehicle loads
+};
+
+\node[tile] at (0,-1.93) {
+\textbf{PROPELLANT STORAGE}\\[3pt]
+Liquid and vapour\\
+Heat and tank pressure
+};
+
+\node[tile] at (4.3,-1.93) {
+\textbf{CABIN AIR}\\[3pt]
+Forced ventilation\\
+Local gas concentration
+};
+
+\node[tile] at (0,-3.86) {
+\textbf{ATMOSPHERIC ENTRY}\\[3pt]
+Shock-heated gas\\
+Heat-shield loading
+};
+
+\node[tile] at (4.3,-3.86) {
+\textbf{POWERED LANDING}\\[3pt]
+Expanding exhaust\\
+Regolith erosion
+};
+
+\end{tikzpicture}
+}
+
+% =========================================================
+% FIGURE 2
+% =========================================================
+
+\newcommand{\evidencefigure}{
+\begin{tikzpicture}[
+font=\sffamily\fontsize{8}{10}\selectfont,
+box/.style={
+draw=line,
+fill=paper,
+rounded corners=2pt,
+text width=3.32cm,
+minimum height=1.25cm,
+align=center,
+inner sep=5pt
+},
+arr/.style={
+-{Latex[length=1.7mm]},
+line width=.5pt,
+draw=ink
+}
+]
+
+\node[box] (problem) at (0,0) {
+\textbf{Set up the problem}\\
+Geometry and conditions
+};
+
+\node[box] (solve) at (4.45,0) {
+\textbf{Run the model}\\
+Equations and physics
+};
+
+\node[box] (measure) at (0,-1.98) {
+\textbf{Collect real data}\\
+Experiment or flight
+};
+
+\node[box] (check) at (4.45,-1.98) {
+\textbf{Check the numerics}\\
+Mesh and convergence
+};
+
+\node[box] (compare) at (0,-3.96) {
+\textbf{Compare results}\\
+Difference and uncertainty
+};
+
+\node[box,fill=ink,text=white] (use) at (4.45,-3.96) {
+\textbf{Use with limits}\\
+Support a design decision
+};
+
+\draw[arr] (problem)--(solve);
+\draw[arr] (solve)--(check);
+\draw[arr] (measure)--(compare);
+\draw[arr] (check.south)--++(0,-.29)-|(compare.north);
+\draw[arr] (compare)--(use);
+
+\end{tikzpicture}
+}
+
+% =========================================================
+% DOCUMENT
+% =========================================================
+
+\begin{document}
+
+{
+\sffamily
+\bfseries
+\fontsize{8}{10}\selectfont
+\color{accent}
+COMPUTATIONAL FLUID DYNAMICS
+}
+\par
+
+\vspace{1mm}
+
+{
+\fontsize{30}{33}\selectfont
+How CFD Shapes Spaceflight
+}
+\par
+
+\vspace{1mm}
+
+{
+\sffamily
+\fontsize{11}{14}\selectfont
+\StandfirstText
+}
+\par
+
+\vspace{1mm}
+
+{
+\sffamily
+\bfseries
+By Adhvaith Ananth
+}
+\par
+
+\vspace{1mm}
+
+{\color{accent}\hrule height 1.2pt}
+
+\vspace{2mm}
+
+\begin{multicols}{2}
+\raggedcolumns
+
+\topic{Why fluids matter in space}{
+\OpeningText
+}
+
+\topic{What CFD actually calculates}{
+\BasicsText
+}
+
+\diagram{
+\missionfigure
+}{
+Figure 1
+}{
+\CaptionOne
+}
+
+\topic{Inside the engine}{
+\EngineText\,\cite{engine}
+}
+
+\topic{Leaving Earth}{
+\LaunchText\,\cite{sls}
+}
+
+\topic{Keeping cold propellant cold}{
+\TankText\,\cite{tank}
+}
+
+\topic{The air inside the spacecraft}{
+\CabinText\,\cite{cabin}
+}
+
+\topic{Surviving atmospheric entry}{
+\EntryText\,\cite{entry}
+}
+
+\topic{When the exhaust reaches the ground}{
+\LandingText\,\cite{landing}
+}
+
+\topic{When is a simulation believable?}{
+\ClosingText\,\cite{verification,validation}
+}
+
+\diagram{
+\evidencefigure
+}{
+Figure 2
+}{
+\CaptionTwo
+}
+
+\topic{About the author}{
+\BioText
+}
+
+\vspace{3mm}
+{\color{line}\hrule}
+\vspace{1mm}
+
+\begingroup
+\fontsize{8.3}{9.8}\selectfont
+
+\renewcommand{\refname}{
+\sffamily
+\fontsize{11}{13}\selectfont
+Sources
+}
+
+\begin{thebibliography}{9}
+
+\setlength{\itemsep}{3pt}
+
+\bibitem{engine}
+NASA Advanced Supercomputing.
+\href{https://www.nas.nasa.gov/SC23/research/project10.html}
+{\emph{Inside the Fire: Simulating Rocket Engine Combustion of Methane-Oxygen Fuel}}.
+7 November 2023.
+
+\bibitem{sls}
+J. G. Meeroff et al.
+\href{https://ntrs.nasa.gov/citations/20220018893}
+{\emph{Advances in Space Launch System Booster Separation CFD}}.
+AIAA SciTech Forum, 2023.
+NASA NTRS 20220018893.
+
+\bibitem{tank}
+NASA Science.
+\href{https://science.nasa.gov/science-research/science-enabling-technology/zero-boil-off-tank-experiments-to-enable-long-duration-space-exploration/}
+{\emph{Zero-Boil-Off Tank Experiments to Enable Long-Duration Space Exploration}}.
+12 March 2024.
+
+\bibitem{cabin}
+M. C. McCray and R. A. Sturtz.
+\href{https://ntrs.nasa.gov/citations/20250003881}
+{\emph{Using CFD to Predict Inspired CO\textsubscript{2} and O\textsubscript{2}
+after Ventilation Shutoff During a Gateway Emergency Response or Maintenance}}.
+ICES-2025-402, 2025.
+
+\bibitem{entry}
+K. T. Edquist et al.
+\href{https://ntrs.nasa.gov/citations/20140000343}
+{\emph{Mars Science Laboratory Heatshield Aerothermodynamics:
+Design and Reconstruction}}.
+AIAA Thermophysics Conference, 2013.
+
+\bibitem{landing}
+NASA Advanced Supercomputing.
+\href{https://www.nas.nasa.gov/SC22/research/project12.html}
+{\emph{Rocket Plume-Surface Interaction Simulations for Moon and Mars Landings}}.
+8 November 2022.
+
+\bibitem{verification}
+NPARC Alliance, NASA Glenn.
+\href{https://www.grc.nasa.gov/www/wind/valid/tutorial/verassess.html}
+{\emph{Verification Assessment}}.
+
+\bibitem{validation}
+NPARC Alliance, NASA Glenn.
+\href{https://www.grc.nasa.gov/www/wind/valid/tutorial/valassess.html}
+{\emph{Validation Assessment}}.
+
+\end{thebibliography}
+
+\endgroup
+
+\end{multicols}
+
+\end{document}

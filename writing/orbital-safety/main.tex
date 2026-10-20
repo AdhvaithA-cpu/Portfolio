@@ -1,0 +1,364 @@
+% Compile with pdfLaTeX. All article text and references are in this file.
+% This is a revised working manuscript, not a CSSS-issued template.
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=0.9in,headheight=14pt,headsep=18pt]{geometry}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{xurl}
+\usepackage{hyperref}
+\definecolor{ink}{HTML}{193B4A}
+\hypersetup{colorlinks=true,urlcolor=ink,linkcolor=ink,
+ pdftitle={Beyond the Karman Line: Keeping Orbital Safety Plans Current},
+ pdfauthor={Adhvaith Ananth and Renish Joshi},pdfsubject={Policy analysis; revised working manuscript}}
+\urlstyle{same}
+\setcounter{secnumdepth}{0}
+\setlength{\parskip}{6pt}
+\setlength{\emergencystretch}{2em}
+\linespread{1.04}
+\widowpenalty=10000
+\clubpenalty=10000
+\raggedbottom
+\titleformat{\section}{\sffamily\bfseries\fontsize{26}{29}\selectfont\color{ink}}{}{0pt}{}
+\titleformat{\subsection}{\sffamily\fontsize{16}{20}\selectfont\color{ink}}{}{0pt}{}
+\titleformat{\subsubsection}{\sffamily\bfseries\large\color{ink}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{0pt}{7pt}
+\titlespacing*{\subsection}{0pt}{0pt}{12pt}
+\titlespacing*{\subsubsection}{0pt}{13pt}{5pt}
+\setlist[enumerate]{leftmargin=1.5em,itemsep=6pt,parsep=0pt}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\scriptsize\sffamily ORBITAL SAFETY AND SPACE POLICY}
+\fancyhead[R]{\scriptsize\sffamily Adhvaith Ananth and Renish Joshi}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\begin{document}
+\hypertarget{beyond-the-kuxe1rmuxe1n-line}{%
+\section{Beyond the Kármán Line}\label{beyond-the-kuxe1rmuxe1n-line}}
+
+\hypertarget{keeping-orbital-safety-plans-current}{%
+\subsection{Keeping Orbital Safety Plans
+Current}\label{keeping-orbital-safety-plans-current}}
+
+\textbf{Adhvaith Ananth and Renish Joshi}\\
+Policy analysis \textbar{} Revised working manuscript \textbar{} 4
+October 2026
+
+A satellite can still take pictures or relay signals after a fault makes
+it harder to avoid a collision or leave orbit. When that happens, the
+people responsible for its safety need an updated account of what it can
+do.
+
+\hypertarget{after-the-launch}{%
+\subsubsection{After the launch}\label{after-the-launch}}
+
+The Kármán line is a familiar way to describe the edge of space. The
+Fédération Aéronautique Internationale uses a height of 100 kilometres
+for astronautical records.{[}1{]} The Outer Space Treaty does not define
+where outer space begins.{[}2{]} For satellites already in orbit,
+though, another question deserves attention: how should oversight
+respond when a spacecraft's condition changes?
+
+Imagine an Earth-observation satellite whose camera still works but
+whose propulsion system has become unreliable. Its operator had planned
+to use that system to avoid close approaches and lower the orbit at the
+end of the mission. The satellite can still provide a service, but its
+safety plan now rests on equipment that may not work as expected.
+
+This is a hypothetical example. It helps explain why an approval issued
+before launch cannot be the only information used to judge a mission
+years later. Engineers may understand the fault, while another operator
+or a regulator is still working from an older description of the
+spacecraft.
+
+We propose a shared record of the capabilities that matter for orbital
+safety. Operators would update it when a significant change affects
+their ability to maneuver, respond to commands or carry out their
+disposal plan. The discussion focuses on civil missions and the United
+States. It draws on published sources; it does not measure how often the
+reporting problem occurs or claim that the proposal has already been
+tested.
+
+\hypertarget{start-with-the-rules-already-in-place}{%
+\subsubsection{Start with the rules already in
+place}\label{start-with-the-rules-already-in-place}}
+
+Article VI of the Outer Space Treaty makes states internationally
+responsible for national space activities. It also requires
+authorization and continuing supervision of nongovernmental activities.
+The treaty leaves the choice of domestic regulator and reporting
+procedures unspecified.{[}2{]}
+
+In the United States, the FAA licenses commercial launch and reentry
+operations within its jurisdiction. In March 2026, it completed the
+transition to Part 450 after a period in which the older rules and the
+new framework operated together.{[}3{]} That work addresses important
+parts of a mission, while other authorities deal with activities such as
+satellite communications.
+
+FCC satellite rules already require information about debris, collision
+risk, maneuverability and disposal. Section 25.171 requires operators to
+keep emergency and interference contact details current.{[}4{]} Any new
+reporting proposal should reuse this information where possible.
+
+The existing disposal rules also recognise that a spacecraft's condition
+matters. Section 25.283(e) sets a five-year maximum after mission end
+for covered spacecraft in, or passing through, low-Earth orbit below
+2,000 kilometres that plan uncontrolled atmospheric reentry. It defines
+mission end by loss of collision-avoidance capability, or completion of
+the primary mission for spacecraft without that capability.{[}4{]}
+
+Our proposal concerns how changes are shared, including restrictions
+that appear before a satellite loses a capability completely. Several
+agencies having different responsibilities is not, on its own, evidence
+of a problem. What matters is whether information reported to one
+recipient reaches others who need it for a safety decision.
+
+\hypertarget{be-clear-about-what-a-satellite-can-do}{%
+\subsubsection{Be clear about what a satellite can
+do}\label{be-clear-about-what-a-satellite-can-do}}
+
+Calling a satellite ``maneuverable'' can leave important questions
+unanswered. NASA describes several ways of reducing collision risk. Some
+spacecraft use propulsion. Others can change their orbit through
+differential drag, by turning to change how much area they expose to the
+thin atmosphere. Certain spacecraft without trajectory-control
+capability can turn to reduce the area facing an approaching
+object.{[}5{]} These methods have different limits.
+
+In our example, the faulty propulsion system might still support some
+maneuvers. Engineers might also be unsure whether the problem is
+temporary. A useful record would allow them to describe the restriction
+and the uncertainty, instead of forcing a choice between ``working'' and
+``failed.''
+
+Every update should say when the assessment was made and what supports
+it. If the operator is still investigating, that should be clear. The
+record should also change when the fault is resolved, so that other
+users do not keep treating a recovered satellite as impaired.
+
+\hypertarget{what-the-record-would-contain}{%
+\subsubsection{What the record would
+contain}\label{what-the-record-would-contain}}
+
+The record could be short. It would identify the spacecraft and its
+operational contact, describe its current maneuvering limits, note any
+restrictions on receiving or carrying out commands, and state whether
+its disposal plan remains feasible. Supporting reports could be linked
+where the recipients have permission to read them.
+
+Access would need care. Another operator may need to know that a
+satellite cannot maneuver during a particular period, without needing
+its propulsion drawings or flight software. More detailed explanations
+could be restricted to the operator and the authorities entitled to
+receive them. Sharing a warning should not require publishing the whole
+design.
+
+There are existing formats to build on. In January 2026, the Office of
+Space Commerce published updated TraCSS specifications for satellite
+catalog information and orbital and conjunction messages.{[}6{]} TraCSS
+is intended to provide basic space situational awareness services to
+civil and private operators.{[}7{]} These formats show how information
+can be exchanged consistently. They do not establish the shared
+capability record proposed in this article.
+
+A common record would also leave legal responsibilities in place.
+Operators would remain responsible for their operations, and agencies
+would act within their own powers. Making any new report compulsory
+would require a legal basis and the applicable procedures. Connecting
+systems would not give a traffic-information service the power to
+approve or stop missions.
+
+\hypertarget{decide-which-changes-need-reporting}{%
+\subsubsection{Decide which changes need
+reporting}\label{decide-which-changes-need-reporting}}
+
+Reporting every minor fault would make the system difficult to use. We
+suggest focusing on changes that affect collision avoidance, command
+response or disposal. A camera outage with no effect on those functions
+would generally fall outside the proposed record. A lasting propulsion
+problem on a satellite that needs propulsion to leave orbit would fall
+inside it.
+
+The reporting deadline should reflect the situation. A brief loss of
+contact may be routine for one mission and a serious concern for
+another. A trial with operators could help establish useful categories
+and deadlines. We do not propose a fixed number of hours without
+evidence that it would work across those cases.
+
+Operators should be able to submit an initial report before finishing
+the investigation. They could state what they know, explain what remains
+uncertain, and update it as testing continues. This would give
+recipients useful information while allowing the engineering assessment
+to develop.
+
+A report would not automatically decide the satellite's future. In our
+example, engineers might recommend recovery attempts, limits on
+operations or earlier disposal while enough capability remains. Those
+decisions need technical judgment. The purpose of the record is to make
+sure the people involved are not relying on assumptions that have become
+outdated.
+
+\hypertarget{a-lesson-from-aeolus}{%
+\subsubsection{A lesson from Aeolus}\label{a-lesson-from-aeolus}}
+
+ESA's Aeolus wind-observation satellite reentered on 28 July 2023.
+Before reentry, engineers used its remaining fuel for a series of
+maneuvers that lowered its orbit. ESA called the operation an assisted
+reentry and explained that Aeolus had not originally been designed to
+perform those maneuvers.{[}8{]}
+
+The example shows how much the end of a mission depends on the
+spacecraft's remaining capabilities and the team's planning. It does not
+prove that our reporting proposal would have changed the outcome, or
+that other satellites could follow the same approach.
+
+It does suggest a useful question for mission extensions: will keeping a
+satellite in service make its eventual disposal less reliable? Operators
+should be able to explain how an extension affects that plan. The fuel
+or backup equipment worth preserving would depend on the mission; Aeolus
+does not establish a single reserve suitable for every spacecraft.
+
+\hypertarget{try-it-before-adding-a-requirement}{%
+\subsubsection{Try it before adding a
+requirement}\label{try-it-before-adding-a-requirement}}
+
+A first trial could be voluntary and leave existing obligations
+unchanged. Operators and agencies would map the information they already
+exchange, then test whether one update could serve several authorized
+uses. Small university missions should take part alongside larger
+fleets. A system that only works for teams with dedicated compliance
+staff would have limited value.
+
+The trial should measure the work involved. How long does an update
+take? Are operators receiving fewer duplicate requests? Do the right
+people receive a warning, and can they understand it? A simple web form
+could serve a small team, while an automated connection might suit a
+large fleet.
+
+The amount of evidence requested should depend on the possible
+consequences and the uncertainty. A small spacecraft is not
+automatically low risk. Equally, fleet size alone does not tell us how
+well an operator manages safety. The review process should allow
+operators to explain their circumstances and challenge a classification
+they consider inaccurate.
+
+\hypertarget{where-the-proposal-could-fall-short}{%
+\subsubsection{Where the proposal could fall
+short}\label{where-the-proposal-could-fall-short}}
+
+Existing coordination may already meet much of this need. The trial
+should compare the shared record with simpler improvements, such as
+keeping contacts current or making existing reports easier to reuse. If
+those changes work as well with less effort, they should be preferred.
+This article does not establish that a new central database is
+necessary.
+
+The record would also depend on the quality of information submitted.
+Named contacts, dates and supporting evidence would make reports easier
+to check, but they would not guarantee accuracy. Procedures should
+distinguish an honest early assessment from a misleading claim.
+Reporting a fault should not, by itself, be treated as misconduct.
+
+Security rules would need to specify who can read or change a record,
+how long it is kept and how errors are corrected. Some warnings might be
+shared widely while the technical details remain restricted. Whether
+that arrangement provides enough information should be tested with the
+teams expected to use it.
+
+There are limits beyond the reporting system. A U.S. arrangement cannot
+ensure participation by every foreign operator. International use would
+need cooperation and compatible practices. A record also cannot repair
+hardware, remove debris or settle liability after a collision. It could
+improve the information available for decisions, but the decisions and
+the physical work would still have to follow.
+
+\hypertarget{keeping-the-plan-useful}{%
+\subsubsection{Keeping the plan useful}\label{keeping-the-plan-useful}}
+
+The Kármán line describes a boundary. Our concern is what happens during
+the years a spacecraft spends beyond it. Components age, faults occur
+and plans change. The information used for oversight should keep pace
+with those changes.
+
+A shared capability record is worth testing if it helps operators and
+regulators act on the same, current understanding of a spacecraft. The
+test should be practical: better information, fewer duplicate requests
+and a reasonable burden on the teams doing the work. If the record adds
+paperwork without improving decisions, it should be changed or dropped.
+
+The goal is to keep a mission's safety plan useful after launch,
+including when the spacecraft can no longer do everything its designers
+expected.
+
+\hypertarget{references}{%
+\needspace{8\baselineskip}
+\subsubsection{References}\label{references}}
+
+\begingroup\small
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Sanz Fernández de Córdoba, S. \emph{100km Altitude Boundary for
+  Astronautics}. Fédération Aéronautique Internationale, updated 21 June
+  2004. \href{https://www.fai.org/page/icare-boundary}{FAI source}.
+\item
+  Kopal, V. \emph{Treaty on Principles Governing the Activities of
+  States in the Exploration and Use of Outer Space, including the Moon
+  and Other Celestial Bodies: Introductory Note}. United Nations
+  Audiovisual Library of International Law, September 2008. Discusses
+  Articles VI and VIII and the treaty's undefined terms.
+  \href{https://legal.un.org/avl/ha/tos/tos.html}{UN source}.
+\item
+  Federal Aviation Administration. \emph{FAA Streamlines Commercial
+  Space License Approvals}. 17 March 2026.
+  \href{https://www.faa.gov/newsroom/faa-streamlines-commercial-space-license-approvals}{FAA
+  source}.
+\item
+  Federal Communications Commission. \emph{47 CFR Part 25: Satellite
+  Communications}, especially §§ 25.114(d)(14), 25.171 and 25.283(e).
+  Electronic Code of Federal Regulations; consulted 4 October 2026.
+  \href{https://www.ecfr.gov/current/title-47/chapter-I/subchapter-B/part-25}{Regulatory
+  text}.
+\item
+  NASA. \emph{Step 3: Close Approach Risk Mitigation}. Conjunction
+  Assessment Risk Analysis programme; consulted 4 October 2026.
+  \href{https://www.nasa.gov/cara/step-3-close-approach-risk-mitigation/}{NASA
+  source}.
+\item
+  Office of Space Commerce. \emph{OSC Publishes Updated TraCSS
+  Specifications}. 22 January 2026.
+  \href{https://space.commerce.gov/osc-publishes-updated-tracss-specifications/}{Commerce
+  source}.
+\item
+  Office of Space Commerce. \emph{OSC Opens TraCSS ``Waitlist'' for
+  Satellite Operators}. 4 February 2026. Cited for the service's stated
+  purpose, not its current enrollment status.
+  \href{https://space.commerce.gov/osc-opens-tracss-waitlist-for-satellite-operators/}{Commerce
+  source}.
+\item
+  European Space Agency. \emph{Aeolus: a historic end to a trailblazing
+  mission}. 29 July 2023.
+  \href{https://www.esa.int/Newsroom/Press_Releases/Aeolus_a_historic_end_to_a_trailblazing_mission}{ESA
+  source}.
+\end{enumerate}
+\endgroup
+
+\hypertarget{about-the-authors}{%
+\subsubsection{About the authors}\label{about-the-authors}}
+
+Adhvaith Ananth and Renish Joshi are students at the Texas Academy of Mathematics and
+Science at the University of North Texas. They both conduct undergraduate research at the University of North Texas. Their interests include
+aerospace engineering, computational simulations, and public policy,
+particularly how spacecraft design and operational decisions affect the
+governance of space activities.
+
+\end{document}

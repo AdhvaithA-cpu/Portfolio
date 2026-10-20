@@ -1,0 +1,1026 @@
+% ============================================================
+% IJHSR REVIEW ARTICLE MOCKUP
+% International Journal of High School Research
+% Engineering and Computer Science
+%
+% Compile with XeLaTeX or LuaLaTeX
+% ============================================================
+
+\documentclass[10pt]{article}
+
+% ============================================================
+% COMPILER CHECK
+% ============================================================
+
+\usepackage{iftex}
+
+\ifPDFTeX
+  \errmessage{This document requires XeLaTeX or LuaLaTeX}
+\fi
+
+% ============================================================
+% PAGE SETUP
+% ============================================================
+
+\usepackage[
+    letterpaper,
+    top=1in,
+    bottom=1in,
+    left=1in,
+    right=1in
+]{geometry}
+
+% ============================================================
+% FONT
+% IJHSR specifies Arial.
+% If Arial is unavailable in the LaTeX environment,
+% TeX Gyre Heros is used as a visual fallback.
+% ============================================================
+
+\usepackage{fontspec}
+
+\IfFontExistsTF{Arial}
+  {\setmainfont{Arial}}
+  {\setmainfont{TeX Gyre Heros}}
+
+% ============================================================
+% BODY FORMATTING
+% ============================================================
+
+\usepackage{setspace}
+\singlespacing
+
+\usepackage{ragged2e}
+\justifying
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlength{\emergencystretch}{2em}
+
+\usepackage{microtype}
+
+% ============================================================
+% SECTION FORMATTING
+% ============================================================
+
+\usepackage{titlesec}
+
+\setcounter{secnumdepth}{0}
+
+% Major headings:
+% Arial 14 pt, bold, 8 pt after
+\titleformat{\section}
+  {\fontsize{14}{14}\selectfont\bfseries}
+  {}
+  {0pt}
+  {}
+
+\titlespacing*{\section}
+  {0pt}
+  {10pt}
+  {8pt}
+
+% Subheadings:
+% Arial 12 pt, bold italic, 8 pt after
+\titleformat{\subsection}
+  {\fontsize{12}{12}\selectfont\bfseries\itshape}
+  {}
+  {0pt}
+  {}
+
+\titlespacing*{\subsection}
+  {0pt}
+  {10pt}
+  {8pt}
+
+% ============================================================
+% MATH
+% ============================================================
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% ============================================================
+% TABLES
+% ============================================================
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+
+\renewcommand{\arraystretch}{1.18}
+\setlength{\tabcolsep}{4pt}
+
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+% ============================================================
+% FIGURES AND CAPTIONS
+% ============================================================
+
+\usepackage{graphicx}
+\usepackage{caption}
+
+\DeclareCaptionFont{ijhsr}{
+    \fontsize{11}{12}\selectfont
+}
+
+\captionsetup{
+    font=ijhsr,
+    justification=RaggedRight,
+    singlelinecheck=false,
+    skip=8pt
+}
+
+% Table captions above
+\captionsetup[table]{
+    position=above
+}
+
+% Figure captions below
+\captionsetup[figure]{
+    position=below
+}
+
+% ============================================================
+% LINKS
+% ============================================================
+
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+
+% ============================================================
+% LISTS
+% ============================================================
+
+\usepackage{enumitem}
+
+\setlist[itemize]{
+    leftmargin=1.5em,
+    itemsep=2pt,
+    topsep=3pt
+}
+
+\setlist[enumerate]{
+    leftmargin=1.7em,
+    itemsep=2pt,
+    topsep=3pt
+}
+
+% ============================================================
+% SUPERSCRIPT ACS-STYLE CITATION NUMBERS
+% Citation numbers should appear AFTER punctuation.
+%
+% Example:
+% Numerical reliability is important.\supercite{1}
+% ============================================================
+
+\newcommand{\supercite}[1]{\textsuperscript{#1}}
+
+% ============================================================
+% DOCUMENT
+% ============================================================
+
+\begin{document}
+
+% ============================================================
+% TITLE
+% 16 pt, bold, title case, maximum two lines
+% ============================================================
+
+{\fontsize{16}{17}\selectfont\bfseries
+Reliability of Transonic Airfoil CFD: A Review of Mesh Resolution,
+Turbulence Modeling, and Shock Prediction
+\par}
+
+\vspace{8pt}
+
+% ============================================================
+% AUTHOR INFORMATION
+% ============================================================
+
+Adhvaith Ananth (student)
+
+Texas Academy of Mathematics and Science,
+University of North Texas,
+1155 Union Circle \#305309,
+Denton, Texas 76203-5017, USA
+
+% Personal contact email omitted from the public portfolio copy.
+
+\vspace{8pt}
+
+% ============================================================
+% ABSTRACT
+% Maximum 200 words
+% One paragraph
+% No citations
+% ============================================================
+
+\section{Abstract}
+
+Computational fluid dynamics (CFD) is widely used to study aerodynamic
+flows, but a numerical solution is useful only when it represents the
+underlying physics with sufficient accuracy. This challenge is
+particularly important in transonic aerodynamics, where localized
+supersonic regions, shock waves, turbulent boundary layers, and possible
+flow separation interact. This review examines major factors that
+influence the reliability of transonic airfoil CFD, including mesh
+resolution, near-wall treatment, turbulence modeling, convergence
+assessment, and experimental validation. The RAE 2822 airfoil is used
+as a principal benchmark because extensive experimental pressure and
+boundary-layer measurements are available for numerical comparison.
+Published studies demonstrate that differences in operating conditions,
+grid design, turbulence closure, and numerical methods can alter shock
+prediction and aerodynamic coefficients. Shock-control bumps are
+considered as an application in which errors in predicted shock position
+can directly influence aerodynamic design. Overall, reliable transonic
+CFD requires multiple forms of evidence rather than reliance on cell
+count, residual reduction, turbulence-model choice, or visually
+plausible contours alone.
+
+% ============================================================
+% KEYWORDS
+% IJHSR: maximum 5
+% Keyword 1 = broad field
+% Keyword 2 = subfield
+% Comma-separated
+% ============================================================
+
+\section{Keywords}
+
+Engineering,
+Aerospace and Aeronautical Engineering,
+Computational Fluid Dynamics,
+Transonic Aerodynamics,
+Shock Control Bumps
+
+% ============================================================
+% INTRODUCTION
+% ============================================================
+
+\section{Introduction}
+
+Computational fluid dynamics has become one of the most widely used
+numerical tools in aerospace engineering. CFD allows engineers to
+approximate the governing equations of fluid motion throughout a
+computational domain and examine quantities including pressure,
+velocity, density, temperature, aerodynamic loads, and flow structures.
+
+The ability to calculate a numerical flow field, however, does not
+automatically establish that the result accurately represents the
+physical flow. A CFD solution can appear plausible while still being
+affected by discretization error, insufficient convergence, incorrect
+boundary conditions, inadequate mesh resolution, or limitations in the
+physical models used by the solver.
+
+Oberkampf and Trucano distinguish between verification and validation
+in computational modeling.\supercite{1} Verification asks whether the
+mathematical model is being solved correctly, while validation asks
+whether that model represents physical reality with sufficient accuracy
+for its intended application. A calculation can therefore be
+numerically converged without necessarily being physically accurate.
+
+Transonic aerodynamics presents a demanding environment for numerical
+simulation. Although the freestream Mach number can remain below one,
+flow over an airfoil may accelerate locally beyond the speed of sound.
+The return to subsonic conditions commonly occurs through a shock wave,
+producing a rapid pressure increase that can interact with the turbulent
+boundary layer.
+
+Depending on the operating condition, shock-wave/boundary-layer
+interaction can increase drag, alter lift, thicken or separate the
+boundary layer, and contribute to unsteady aerodynamic buffet.
+Predicting this behavior requires a numerical method that can represent
+both compressible shock physics and viscous near-wall flow.
+
+The RAE 2822 airfoil has become an important benchmark for transonic CFD
+because experimental surface-pressure, boundary-layer, and wake
+measurements are available for comparison.\supercite{2} This review
+uses the RAE 2822 and related studies to examine how mesh construction,
+turbulence modeling, numerical convergence, and validation methodology
+influence the reliability of transonic CFD.
+
+Shock-control bumps are also considered as an application of this
+problem. These localized surface modifications are designed to alter
+the compression process near a transonic shock. Their effectiveness
+depends strongly on the predicted shock location, making them a useful
+example of why numerical validation should precede CFD-based
+optimization.
+
+% ============================================================
+% RESULTS AND DISCUSSION
+% Required IJHSR major heading
+% ============================================================
+
+\section{Results and Discussion}
+
+% ============================================================
+% LITERATURE SEARCH
+% ============================================================
+
+\subsection{Literature Selection and Scope}
+
+This article is a targeted narrative review rather than a systematic
+review. Literature was identified through focused searches of the NASA
+Glenn Research Center NPARC Alliance Validation Archive and scholarly
+publisher and DOI databases. Search terms included combinations of
+``RAE 2822 transonic validation,'' ``CFD verification validation,''
+``shock wave boundary layer turbulence model,'' ``transonic airfoil
+mesh convergence,'' and ``shock control bump review.''
+
+Sources were selected when they addressed at least one of four areas:
+experimental or numerical RAE 2822 benchmarking, CFD verification and
+discretization uncertainty, turbulence modeling for
+shock-wave/boundary-layer interaction, or shock-control-bump
+performance. Reference chaining from major review and application
+studies was also used to identify foundational publications.
+
+Preference was given to studies that described operating conditions,
+numerical methods, validation evidence, or experimental comparisons in
+sufficient detail to permit meaningful interpretation.
+
+Because the search was targeted rather than systematic, the literature
+discussed here should not be interpreted as an exhaustive collection of
+all published work on transonic CFD.
+
+% ============================================================
+% TRANSONIC PHYSICS
+% ============================================================
+
+\subsection{Physics of Transonic Airfoil Flow}
+
+The local Mach number is defined as
+
+\begin{equation}
+M=\frac{V}{a},
+\end{equation}
+
+where $V$ is local flow velocity and $a$ is the local speed of sound.
+
+A freestream Mach number below one does not require the complete flow
+around an airfoil to remain subsonic. Pressure gradients created by the
+airfoil can accelerate the flow, particularly over the upper surface.
+Under transonic conditions this can create a localized region in which
+the Mach number exceeds unity.
+
+The downstream transition from local supersonic flow to subsonic flow
+can occur through a shock wave. Across the shock, pressure, density, and
+temperature increase while velocity decreases.
+
+In a CFD calculation the discontinuity is represented across a finite
+number of computational cells. An insufficiently resolved shock can
+therefore become numerically smeared or appear at an incorrect
+streamwise location.
+
+The pressure increase through the shock also produces a strong adverse
+pressure gradient. Fluid close to the airfoil surface has less momentum
+than the outer flow, allowing the boundary layer to thicken or separate
+when exposed to a sufficiently strong pressure rise.
+
+This interaction is known as shock-wave/boundary-layer interaction
+(SWBLI). Turbulence modeling and separation prediction can strongly
+influence its numerical representation.\supercite{3}
+
+% ============================================================
+% VERIFICATION AND VALIDATION
+% ============================================================
+
+\subsection{Verification, Validation, and Numerical Uncertainty}
+
+Verification and validation address different aspects of computational
+reliability.
+
+Verification examines whether the numerical implementation solves the
+intended equations correctly. Validation examines whether the physical
+model reproduces experimental reality with sufficient accuracy for the
+intended application.\supercite{1}
+
+This distinction is important because the governing equations are
+approximated on a finite grid. Discretization introduces numerical
+error, particularly in regions containing large gradients such as
+boundary layers and shock waves.
+
+One common method of assessing discretization sensitivity is to compare
+solutions generated on progressively refined grids. Quantities such as
+pressure coefficient, shock location, lift, drag, wall shear, and
+separation position can then be compared.
+
+A simple difference measure between coarse and fine solutions can be
+written as
+
+\begin{equation}
+\Delta Q =
+\left|
+\frac{Q_{\mathrm{fine}}-Q_{\mathrm{coarse}}}
+{Q_{\mathrm{fine}}}
+\right|\times100\%.
+\end{equation}
+
+More formal methods, including the Grid Convergence Index, provide
+structured approaches for estimating uncertainty associated with
+spatial discretization.\supercite{4}
+
+Grid convergence should be evaluated for the quantities that matter to
+the study. Lift may become relatively insensitive to grid refinement
+while drag or shock location remains sensitive.
+
+% ============================================================
+% RAE 2822
+% ============================================================
+
+\subsection{RAE 2822 as a Validation Benchmark}
+
+The RAE 2822 airfoil is widely used in transonic CFD validation because
+of the experimental database reported by Cook, McDonald, and
+Firmin.\supercite{2}
+
+The dataset includes surface-pressure, boundary-layer, and wake
+measurements. These measurements allow computational results to be
+evaluated against physical data rather than solely against another
+numerical prediction.
+
+NASA's NPARC Alliance Validation Archive contains RAE 2822 cases
+designed specifically to compare computational predictions with
+experimental measurements.\supercite{5}
+
+One NASA validation study uses a structured C-grid with dimensions of
+369 by 65 points at a freestream Mach number of 0.729, an angle of
+attack of approximately $2.31^\circ$, and a Reynolds number of roughly
+$6.5\times10^6$.\supercite{5}
+
+Multiple turbulence models are evaluated, and computed surface-pressure
+coefficients are compared with experimental data.
+
+Malkocoglu and coauthors used a different RAE 2822 case as a validation
+step before analyzing shock-wave/boundary-layer interaction and
+shock-control bumps on the NACA 64-A-307 airfoil.\supercite{6}
+
+Their RAE configuration used Mach 0.75, an angle of attack of
+$3.19^\circ$, and Reynolds number $6.2\times10^6$ with a modified
+O-type mesh containing 545,768 cells.
+
+These studies should not be treated as identical simply because both
+use the RAE 2822 geometry. Their operating conditions, meshes, numerical
+solvers, and turbulence-model comparisons differ.
+
+Malkocoglu and coauthors reported better shock-location capture with
+k--omega SST than with Spalart--Allmaras for their numerical
+configuration.\supercite{6}
+
+This is evidence of model sensitivity within that particular
+configuration rather than proof that one turbulence model is universally
+superior.
+
+% ============================================================
+% MESH
+% ============================================================
+
+\subsection{Mesh Resolution and Grid Topology}
+
+A CFD mesh determines the spatial locations at which the governing
+equations are approximated.
+
+Transonic-airfoil simulations contain several regions where additional
+resolution may be important: the leading edge, near-wall boundary layer,
+expected shock region, trailing edge, and downstream wake.
+
+C-type and O-type structured grids are common in benchmark airfoil CFD
+because they allow direct control of surface-normal spacing and
+streamwise cell distribution.
+
+NASA's RAE 2822 validation uses a C-grid, whereas the Malkocoglu
+validation employs a modified O-type grid.\supercite{5--6}
+
+The existence of successful studies using different topologies shows
+that grid topology alone does not determine accuracy. Local resolution,
+cell quality, numerical formulation, and placement of refinement are
+also important.
+
+Unstructured meshes provide greater geometric flexibility and are
+common for complex configurations. They should not automatically be
+considered less accurate than structured grids. Their performance also
+depends on local refinement, element quality, near-wall construction,
+and numerical scheme.
+
+Near the wall, resolution is commonly described using
+
+\begin{equation}
+y^+ = \frac{u_\tau y}{\nu},
+\end{equation}
+
+where $u_\tau$ is friction velocity, $y$ is wall-normal distance, and
+$\nu$ is kinematic viscosity.
+
+Wall-resolved approaches often target $y^+$ values close to unity.
+However, a favorable first-cell distance alone cannot demonstrate mesh
+adequacy. Streamwise spacing through the shock and resolution of the
+wake remain important.
+
+Raw cell count is therefore a weak basis for comparing unrelated CFD
+studies. A larger grid does not automatically produce a more accurate
+solution if its resolution is distributed inefficiently or if other
+modeling errors dominate.
+
+% ============================================================
+% TURBULENCE
+% ============================================================
+
+\subsection{Turbulence Modeling}
+
+Direct numerical simulation resolves turbulent motion across the
+relevant range of scales but is computationally impractical for many
+high-Reynolds-number engineering problems.
+
+Large-eddy simulation reduces this requirement by modeling smaller
+scales but remains computationally demanding for wall-bounded
+aerodynamic flows.
+
+Reynolds-averaged Navier--Stokes methods instead solve for averaged flow
+quantities and model the influence of turbulent fluctuations. RANS
+therefore remains common in engineering CFD.
+
+The Spalart--Allmaras model is a one-equation turbulence model developed
+for aerodynamic flows.\supercite{7}
+
+Its comparatively low computational cost has contributed to its
+widespread use in external aerodynamics.
+
+Menter's k--omega shear-stress-transport model is a two-equation
+eddy-viscosity formulation.\supercite{8}
+
+Its treatment of near-wall flow and adverse pressure gradients has made
+it common in simulations involving possible separation.
+
+Comparative shock/boundary-layer studies show that turbulence closure
+can materially alter predicted shock position and separation
+behavior.\supercite{3}
+
+Consequently, disagreement between CFD and experiment cannot
+automatically be attributed to mesh resolution alone.
+
+% ============================================================
+% SHOCK EVALUATION
+% ============================================================
+
+\subsection{Evaluating Shock Prediction and Convergence}
+
+Mach-number contours are useful for identifying supersonic regions and
+visualizing shock structure, but they remain primarily qualitative.
+
+Contour spacing, interpolation, and plotting choices can make a
+numerical shock appear convincing even when its predicted position is
+incorrect.
+
+The surface pressure coefficient is
+
+\begin{equation}
+C_p =
+\frac{p-p_{\infty}}
+{\frac{1}{2}\rho_{\infty}V_{\infty}^{2}}.
+\end{equation}
+
+Pressure coefficient is especially useful for validation because it can
+be measured experimentally and calculated numerically.
+
+Shock location is often represented using normalized chord position
+$x/c$. Because shock location responds to geometry, Mach number,
+boundary-layer state, and turbulence modeling, it provides a sensitive
+metric for comparing CFD with experiment.
+
+Integrated aerodynamic forces provide additional information.
+
+Lift and drag coefficients are
+
+\begin{equation}
+C_L=
+\frac{L}
+{\frac{1}{2}\rho_{\infty}V_{\infty}^{2}S},
+\end{equation}
+
+and
+
+\begin{equation}
+C_D=
+\frac{D}
+{\frac{1}{2}\rho_{\infty}V_{\infty}^{2}S}.
+\end{equation}
+
+Integrated coefficients, however, can hide local errors because
+differences in surface pressure may partially cancel.
+
+Agreement in $C_L$ alone therefore does not demonstrate that shock
+position or surface loading has been accurately predicted.
+
+Residual histories should also be considered alongside engineering
+quantities.
+
+Persistent variation in a CFD result may represent incomplete
+convergence, numerical instability, or genuine physical unsteadiness.
+
+% ============================================================
+% SHOCK CONTROL BUMPS
+% ============================================================
+
+\subsection{Shock-Control Bumps as a Validation-Dependent Application}
+
+Shock-control bumps are localized surface modifications intended to
+alter the compression process associated with a transonic shock.
+
+Bruce and Colliss reviewed shock-control-bump research and emphasized
+the importance of bump shape, position, operating condition, and shock
+behavior.\supercite{9}
+
+A bump can alter the local surface curvature and compression-wave
+structure, potentially weakening or redistributing the main shock.
+
+Possible benefits include reduced wave drag and changes in separation
+or buffet behavior.
+
+The effectiveness of the geometry is strongly dependent on its position
+relative to the shock. This creates a direct dependence on the accuracy
+of the baseline CFD prediction.
+
+If the baseline numerical method predicts the shock too far upstream or
+downstream, an optimization algorithm may design a bump around a
+numerical error rather than the physical shock position.
+
+Tian and coauthors analyzed two shock-control-bump concepts on the
+RAE 2822 using RANS and URANS calculations.\supercite{10}
+
+Their results illustrate that a configuration that performs favorably
+near one operating condition can provide less benefit at another.
+
+The study therefore illustrates two related challenges: CFD must first
+predict the baseline shock accurately, and the resulting geometry must
+then be tested away from the single condition for which it was
+optimized.
+
+% ============================================================
+% TABLE 1
+% ============================================================
+
+Table 1 compares several studies discussed throughout this review.
+Differences in geometry, operating point, solver, and validation
+evidence limit direct numerical comparison, but the studies collectively
+show how different components of CFD reliability are evaluated.
+
+\begin{table}[H]
+
+\caption{\textbf{Comparison of selected transonic CFD and shock-control
+studies.} The studies use different geometries, operating conditions,
+and numerical methods; their numerical results therefore should not be
+compared as identical test cases.}
+
+\centering
+\fontsize{9}{10}\selectfont
+
+\begin{tabularx}{\textwidth}{
+    L{2.0cm}
+    L{2.15cm}
+    L{2.15cm}
+    L{2.4cm}
+    Y
+}
+
+\toprule
+
+\textbf{Study} &
+\textbf{Configuration} &
+\textbf{Method} &
+\textbf{Validation evidence} &
+\textbf{Key limitation or relevance} \\
+
+\midrule
+
+NASA RAE Study &
+RAE 2822; $M=0.729$; $\alpha\approx2.31^\circ$ &
+369 $\times$ 65 C-grid; multiple RANS models &
+Experimental surface $C_p$ and aerodynamic convergence monitoring &
+Strong benchmark evidence, but represents a specific RAE operating
+point and numerical setup. \\
+
+\addlinespace
+
+Malkocoglu et al. &
+RAE 2822; $M=0.75$; $\alpha=3.19^\circ$;
+$Re=6.2\times10^6$ &
+Modified O-grid; 545,768 cells; turbulence-model comparison &
+Published RAE benchmark pressure comparison &
+Useful validate-first workflow before NACA bump analysis; not directly
+identical to the NASA RAE operating point. \\
+
+\addlinespace
+
+Liou et al. &
+Multiple transonic and supersonic SWBLI cases &
+Several turbulence models &
+Comparison with experimental interaction data &
+Demonstrates turbulence-model sensitivity but uses interaction cases
+rather than one airfoil benchmark. \\
+
+\addlinespace
+
+Tian et al. &
+RAE 2822 with two shock-control concepts &
+RANS and URANS &
+Baseline comparison and aerodynamic/buffet analysis &
+Shows design and off-design sensitivity; conclusions depend on baseline
+numerical fidelity. \\
+
+\bottomrule
+
+\end{tabularx}
+
+\end{table}
+
+% ============================================================
+% TABLE 2
+% ============================================================
+
+Table 2 summarizes major sources of uncertainty that can influence
+transonic-airfoil CFD.
+
+\begin{table}[H]
+
+\caption{\textbf{Major sources of uncertainty in transonic-airfoil
+CFD.} No single assessment establishes numerical reliability; several
+forms of evidence should be considered together.}
+
+\centering
+\fontsize{9}{10}\selectfont
+
+\begin{tabularx}{\textwidth}{
+    L{2.6cm}
+    Y
+    Y
+}
+
+\toprule
+
+\textbf{Source} &
+\textbf{Possible effect} &
+\textbf{Assessment approach} \\
+
+\midrule
+
+Mesh density &
+Shock smearing, pressure-gradient error, and altered force coefficients &
+Grid-refinement comparison of $C_p$, $x/c$, $C_L$, and $C_D$. \\
+
+\addlinespace
+
+Near-wall spacing &
+Incorrect boundary-layer and wall-shear prediction &
+Evaluate $y^+$ and wall-normal grid distribution. \\
+
+\addlinespace
+
+Turbulence closure &
+Changed shock position or separation behavior &
+Compare suitable models with experimental evidence. \\
+
+\addlinespace
+
+Discretization scheme &
+Numerical diffusion or numerical oscillation &
+Evaluate scheme sensitivity and grid refinement. \\
+
+\addlinespace
+
+Boundary conditions &
+Incorrect operating point or artificial domain influence &
+Verify freestream quantities and test domain sensitivity. \\
+
+\addlinespace
+
+Convergence &
+Drifting pressure or aerodynamic coefficients &
+Monitor residuals and engineering quantities simultaneously. \\
+
+\addlinespace
+
+Physical unsteadiness &
+Time-varying shock position and aerodynamic forces &
+Use time-accurate simulation and statistical averaging. \\
+
+\bottomrule
+
+\end{tabularx}
+
+\end{table}
+
+% ============================================================
+% SYNTHESIS
+% ============================================================
+
+\subsection{Synthesis and Remaining Research Questions}
+
+The studies reviewed demonstrate that numerical accuracy cannot be
+reduced to a single CFD setting.
+
+Mesh refinement is necessary for assessing discretization sensitivity,
+but a grid-independent calculation may still disagree with experiment
+because of turbulence-model or boundary-condition errors.
+
+Similarly, agreement between two turbulence models demonstrates
+numerical consistency but does not by itself establish physical
+accuracy.
+
+Integrated aerodynamic coefficients can also conceal local flow errors.
+A CFD model may predict a reasonable lift coefficient while placing the
+shock at an incorrect streamwise position.
+
+For transonic validation, the most convincing evidence therefore comes
+from several quantities considered together: pressure coefficient,
+shock position, aerodynamic forces, grid sensitivity, and numerical
+convergence.
+
+Several research challenges remain.
+
+Transition between laminar and turbulent boundary layers can influence
+shock behavior but is often simplified in engineering RANS calculations.
+
+Three-dimensional effects also limit the direct application of
+two-dimensional airfoil results to real wings. Practical configurations
+include finite span, sweep, crossflow, and more complex shock geometry.
+
+Unsteady buffet creates another challenge because a moving physical
+shock should not necessarily converge to one constant location. URANS,
+LES, and hybrid approaches can provide additional information but
+increase computational cost.
+
+For shock-control technology, robust optimization across several Mach
+numbers and angles of attack may be more useful than optimization for a
+single operating point.
+
+% ============================================================
+% CONCLUSION
+% ============================================================
+
+\section{Conclusion}
+
+Transonic-airfoil CFD is challenging because localized supersonic
+regions, shock waves, turbulent boundary layers, separation, and
+possible unsteadiness can occur within the same flow field.
+
+The literature reviewed here shows that numerical reliability depends
+on several interconnected choices.
+
+Mesh resolution affects the representation of the boundary layer and
+shock, but cell count alone does not determine accuracy. Turbulence
+closure can alter shock position and separation behavior, while
+numerical convergence does not necessarily imply agreement with
+physical measurements.
+
+The RAE 2822 remains valuable because benchmark experimental data allow
+researchers to compare numerical predictions with independent evidence.
+
+Comparisons of surface pressure, shock position, aerodynamic
+coefficients, grid sensitivity, and convergence behavior provide a
+stronger validation basis than any individual metric.
+
+Shock-control bumps demonstrate why this process matters beyond
+benchmarking.
+
+Because bump geometry and placement depend on the baseline shock
+structure, numerical errors in shock prediction can propagate directly
+into aerodynamic optimization.
+
+The main conclusion of this review is therefore that validation should
+be treated as part of the predictive engineering process rather than a
+final procedural step.
+
+Reliable transonic CFD depends not on how convincing the resulting flow
+visualization appears, but on whether multiple numerical and
+experimental indicators support the physical accuracy of the prediction.
+
+% ============================================================
+% AI ACKNOWLEDGEMENT
+% Required by current IJHSR template
+% ============================================================
+
+\section{AI Acknowledgement}
+
+During the preparation of this demonstration manuscript, the author
+used OpenAI ChatGPT to assist with document formatting, organization,
+and creation of a LaTeX representation of the IJHSR Review Article
+Template. The resulting content was reviewed and edited by the author.
+This document is intended as a personal demonstration of journal
+formatting and is not intended for submission.
+
+% ============================================================
+% ACKNOWLEDGEMENTS
+% ============================================================
+
+\section{Acknowledgements}
+
+The author acknowledges the University of North Texas engineering
+environment for providing exposure to computational aerodynamics and
+transonic CFD concepts.
+
+% ============================================================
+% REFERENCES
+% ACS style
+% Numbers follow first appearance
+% ============================================================
+
+\section{References}
+
+\begin{enumerate}[
+    label=\arabic*.,
+    leftmargin=1.7em,
+    itemsep=4pt,
+    topsep=0pt
+]
+
+\item
+Oberkampf, W. L.; Trucano, T. G.
+Verification and Validation in Computational Fluid Dynamics.
+\textit{Prog. Aerosp. Sci.}
+\textbf{2002}, \textit{38}, 209--272.
+\url{https://doi.org/10.1016/S0376-0421(02)00005-2}.
+
+\item
+Cook, P. H.; McDonald, M. A.; Firmin, M. C. P.
+\textit{Aerofoil RAE 2822: Pressure Distributions, and Boundary Layer
+and Wake Measurements};
+AGARD Advisory Report AR-138, 1979.
+
+\item
+Liou, W. W.; Huang, P. G.; Shih, T.-H.
+Turbulence Model Assessment for Shock Wave/Turbulent Boundary-Layer
+Interaction in Transonic and Supersonic Flows.
+\textit{Comput. Fluids}
+\textbf{2000}, \textit{29}, 275--299.
+\url{https://doi.org/10.1016/S0045-7930(99)00010-9}.
+
+\item
+Celik, I. B.; Ghia, U.; Roache, P. J.; Freitas, C. J.;
+Coleman, H.; Raad, P. E.
+Procedure for Estimation and Reporting of Uncertainty Due to
+Discretization in CFD Applications.
+\textit{J. Fluids Eng.}
+\textbf{2008}, \textit{130}, 078001.
+\url{https://doi.org/10.1115/1.2960953}.
+
+\item
+NASA NPARC Alliance Validation Archive.
+RAE 2822 Transonic Airfoil: Study No. 5.
+NASA Glenn Research Center.
+
+\item
+Malkocoglu, U. E.; Barada, M. E.-H. A.; Cetin, F.;
+Celik, B.; Yuceil, K. B.
+Experimental and Computational Investigations of Shock Wave--Boundary
+Layer Interaction on a Transonic Airfoil with and without Bump.
+\textit{AIAA AVIATION Forum}, 2020, AIAA Paper 2020-2759.
+\url{https://doi.org/10.2514/6.2020-2759}.
+
+\item
+Spalart, P. R.; Allmaras, S. R.
+A One-Equation Turbulence Model for Aerodynamic Flows.
+\textit{30th AIAA Aerospace Sciences Meeting and Exhibit},
+1992, AIAA Paper 92-0439.
+\url{https://doi.org/10.2514/6.1992-439}.
+
+\item
+Menter, F. R.
+Two-Equation Eddy-Viscosity Turbulence Models for Engineering
+Applications.
+\textit{AIAA J.}
+\textbf{1994}, \textit{32}, 1598--1605.
+\url{https://doi.org/10.2514/3.12149}.
+
+\item
+Bruce, P. J. K.; Colliss, S. P.
+Review of Research into Shock Control Bumps.
+\textit{Shock Waves}
+\textbf{2015}, \textit{25}, 451--471.
+\url{https://doi.org/10.1007/s00193-014-0533-4}.
+
+\item
+Tian, Y.; Gao, S.; Liu, P.; Wang, J.
+Transonic Buffet Control Research with Two Types of Shock Control
+Bump Based on RAE2822 Airfoil.
+\textit{Chin. J. Aeronaut.}
+\textbf{2017}, \textit{30}, 1681--1696.
+\url{https://doi.org/10.1016/j.cja.2017.07.011}.
+
+\end{enumerate}
+
+% ============================================================
+% AUTHORS
+% Optional but recommended
+% Maximum 50 words
+% ============================================================
+
+\section{Authors}
+
+\textbf{Adhvaith Ananth} is a student at the Texas Academy of
+Mathematics and Science at the University of North Texas. His academic
+interests include aerospace engineering, computational fluid dynamics,
+transonic aerodynamics, and high-speed flow analysis.
+
+\end{document}
